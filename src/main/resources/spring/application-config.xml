@@ -28,6 +28,7 @@
 	            /admin/** = authc, roles[admin]
 	            /docs/** = authc, perms[document:read]
 	            /lib/** = anon
+	            /app/** = anon
 	            /** = authc
 	            # more URL-to-FilterChain definitions here
 	        </value>
