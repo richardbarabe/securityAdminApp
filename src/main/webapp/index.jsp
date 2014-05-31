@@ -157,8 +157,6 @@ body {
 			</div>
 		</div>
 	</section>
-	<script src="${pageContext.request.contextPath}/app/admin/users/admin-users.js"></script>
-	<script src="${pageContext.request.contextPath}/app/admin/admin.js"></script>
-	<script src="${pageContext.request.contextPath}/app/app.js"></script>
+	<script src="app/dist/app.js"></script>
 </body>
 </html>
