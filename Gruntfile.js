@@ -11,9 +11,12 @@ module.exports = function(grunt) {
 				src:['<%= dirs.src %>/**/*.js'],
 			    dest: '<%= dirs.dest %>/app.js'
 			}
-		}
+		},
+		clean: ['<%= dirs.dest %>']
 	});
 	
 	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.registerTask('default', ['concat']);
+	grunt.loadNpmTasks('grunt-contrib-clean');
+	
+	grunt.registerTask('default', ['clean','concat']);
 };

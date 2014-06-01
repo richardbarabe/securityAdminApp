@@ -74,6 +74,6 @@ body {
 	<!-- AngularJS -->
 	<script src="${pageContext.request.contextPath}/lib/angular/angular-1.2.13.min.js"></script>
 	<script src="${pageContext.request.contextPath}/lib/angular/angular-resource-1.2.13.min.js"></script>
-	<script src="${pageContext.request.contextPath}/lib/angular/securityManager/main.js"></script>
+	<script src="${pageContext.request.contextPath}/app/dist/app.js"></script>
 </body>
 </html>
