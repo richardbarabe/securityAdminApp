@@ -3,7 +3,7 @@ package com.example.shiro.api;
 import java.util.List;
 
 public interface UserService {
-	public void create(String username, String... roles);
+	public void create(String username, RoleDTO... roles);
 	public UserDTO get(String username);
 	public void delete(String username);
 	public void update(UserDTO user);

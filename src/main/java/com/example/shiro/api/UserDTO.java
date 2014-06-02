@@ -3,10 +3,10 @@ package com.example.shiro.api;
 public class UserDTO {
 	private String username;
 	private String password;
-	private String[] roles;
+	private RoleDTO[] roles;
 	
 	public UserDTO() {}
-	public UserDTO(String username, String... roles) {
+	public UserDTO(String username, RoleDTO... roles) {
 		this.username = username;
 		this.roles = roles;
 	}
@@ -27,11 +27,11 @@ public class UserDTO {
 		this.password = password;
 	}
 	
-	public String[] getRoles() {
+	public RoleDTO[] getRoles() {
 		return roles;
 	}
 	
-	public void setRoles(String[] roles) {
+	public void setRoles(RoleDTO[] roles) {
 		this.roles = roles;
 	}
 }

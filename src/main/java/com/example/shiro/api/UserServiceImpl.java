@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
 	@Override
-	public void create(String username, String... roles) {
+	public void create(String username, RoleDTO... roles) {
 		UserDTO user = new UserDTO();
 		user.setUsername(username);
 		user.setRoles(roles);
@@ -78,59 +78,62 @@ public class UserServiceImpl implements UserService {
 		
 	});
 	static {
-		users.add(new UserDTO("AAA", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("BBB", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("CCC", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("DDD", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("EEE", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("FFF", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("GGG", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("HHH", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("III", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("JJJ", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("KKK", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("LLL", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("MMM", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("NNN", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("OOO", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("PPP", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("QQQ", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("RRR", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("SSS", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("TTT", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("UUU", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("VVV", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("WWW", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("XXX", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("YYY", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("ZZZ", "ADMIN", "SYSTEM_ADMIN", "USER"));
+		RoleDTO roleAgencyAdmin = new RoleDTO("Agency Administrator", "AGENCY_ADMIN");
+		RoleDTO roleSystemAdmin = new RoleDTO("System Administrator", "SYSTEM_ADMIN");
+		RoleDTO roleAdvertizer = new RoleDTO("Advertizer", "ADVERTYSER");
+		users.add(new UserDTO("AAA", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("BBB", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("CCC", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("DDD", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("EEE", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("FFF", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("GGG", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("HHH", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("III", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("JJJ", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("KKK", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("LLL", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("MMM", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("NNN", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("OOO", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("PPP", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("QQQ", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("RRR", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("SSS", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("TTT", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("UUU", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("VVV", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("WWW", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("XXX", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("YYY", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("ZZZ", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
 
-		users.add(new UserDTO("aaa", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("bbb", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("ccc", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("ddd", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("eee", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("fff", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("ggg", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("hhh", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("iii", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("jjj", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("kkk", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("lll", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("mmm", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("nnn", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("ooo", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("ppp", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("qqq", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("rrr", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("sss", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("ttt", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("uuu", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("vvv", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("www", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("xxx", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("yyy", "ADMIN", "SYSTEM_ADMIN", "USER"));
-		users.add(new UserDTO("zzz", "ADMIN", "SYSTEM_ADMIN", "USER"));
+		users.add(new UserDTO("aaa", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("bbb", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("ccc", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("ddd", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("eee", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("fff", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("ggg", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("hhh", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("iii", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("jjj", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("kkk", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("lll", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("mmm", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("nnn", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("ooo", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("ppp", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("qqq", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("rrr", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("sss", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("ttt", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("uuu", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("vvv", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("www", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("xxx", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("yyy", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
+		users.add(new UserDTO("zzz", roleAgencyAdmin, roleSystemAdmin, roleAdvertizer));
 	}
 	
 }

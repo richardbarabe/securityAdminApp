@@ -56,13 +56,6 @@ body {
 								<input type='password' id='password' name='password' class="form-control" placeholder="password" />
 							</div>
 						</div>
-						<!--                   <div class="form-group"> -->
-						<!--                     <label> -->
-						<!--                       <div class="col-lg-12 center"> -->
-						<%--                         <input type='checkbox' id='_spring_security_remember_me' name='_spring_security_remember_me'> ${rememberMeLabel} --%>
-						<!--                       </div> -->
-						<!--                     </label> -->
-						<!--                   </div> -->
 						<input name="submit" type="submit" value="Login" class="btn btn-primary btn-block" />
 					</form>
 				</div>
