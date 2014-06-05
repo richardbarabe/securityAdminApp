@@ -11,5 +11,7 @@
 
 	<mvc:resources mapping="/lib/**" location="/lib/" />
 	<mvc:resources mapping="/app/**" location="/app/" />
+	<mvc:resources mapping="/*" location="/" />
+	
 	
 </beans>
