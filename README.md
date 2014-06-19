@@ -1,17 +1,43 @@
-# Security Management Application
+# Security Management Example Application
 
-##Building
-This application uses maven to build a java war project.
-On the client side it is using AngularJS and [grunt](http://gruntjs.com/) as a javascript build system.
-Since AngularJS components are separated in multiple physical files, [grunt concat](https://github.com/gruntjs/grunt-contrib-concat) is used to concat all of these files into a single one at build time.  At runtime, Jsp files are including this file.
+This is an example of an identity management web application in java/html/javascript.
+The project is separated in two parts : the server and the client.
+The server expose identity management features through json web services.
+It uses Spring framework(context, jdbc, mvc), apache shiro for authentication/authorization and
+MySQL for persistence.
 
-Grunt is launched by maven at the "generate-source" phase.
-To build the project, first you'll need to have node.js, since grunt command line tool is to install via npm :
+## The server
+### The Database
+First you'll need a mysql server installed.  You'll have to create a database in wich you have to execute the sql in server/database.sql.
+The default configuration to access database is "shiroExample" as a database name and a "root" user with no password.  You can change these
+settings in server/src/main/resources/spring/application-config.xml (search for the "datasource" bean configuration).
+
+### Building and starting the server
+The server uses maven a a build system, with the cargo maven plugin configured.  So to build and start the application, you do : 
+
+```bash
+mvn clean package cargo:run
+```
+This will by default start a jetty web server with the following url as the root : http://localhost:8080/shiroExample
+
+##The client
+The Client application is built with HTML5 and JavaScript.  It uses google's AngularJS framework and is built using Grunt.
+To install grunt, you'll first need to install node.js.  Then you'll be able to install it like this :
+
 ```bash
 sudo npm install grunt-cli
 ```
 
-Grunt and grunt-contrib-concat are already installed in this project (see /node-modules).
+To build and start the client application, go to the client directory and launch the following command : 
+
+```bash
+grunt concat connect
+```
+The application should now run on : http://localhost:9001
+
+You can loggin in the application using admin:admin
+
+
 
 
 ##Database
