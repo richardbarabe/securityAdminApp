@@ -36,10 +36,3 @@ grunt concat connect
 The application should now run on : http://localhost:9001
 
 You can loggin in the application using admin:admin
-
-
-
-
-##Database
-To make this project work, you'll also need mysql with a database named "shiroExample".  You'll find the script in the file cleverly named "database.sql".
-Make sure you have a root user with no password, or edit the file /src/main/resource/spring/application-config.xml accordingly (see the "datasource bean" at the end of the file).
