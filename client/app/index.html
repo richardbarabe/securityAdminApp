@@ -18,9 +18,9 @@
 	src="lib/bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
 <!-- AngularJS -->
 <script
-	src="lib/angular/angular-1.2.13.min.js"></script>
+	src="lib/angular/angular.js"></script>
 <script
-	src="lib/angular/angular-resource-1.2.13.min.js"></script>
+	src="lib/angular/angular-resource.min.js"></script>
 <script
 	src="lib/angular/angular-route.min.js"></script>
 
@@ -60,12 +60,12 @@ body {
 </style>
 
 </head>
-<body>
+<body ng-controller="ApplicationController">
 	<section>
 		<div class="container main">
 			<div class="row">
 				<div class="col-lg-6 center well">
-					<ul class="nav nav-tabs" ng-controller="IdentityTabsController">
+					<ul class="nav nav-tabs" ng-if="isAuthorized(userRoles.sysadmin)">
 						<li tab="tab" 
 							ng-class="tabClass(tab)"
 							ng-repeat="tab in tabs">

@@ -3,7 +3,7 @@
  * It's the url of the json service for managing users (search,create,delete).
  */
 
-angular.module("admin-users", [ "admin-roles", "ngResource", "ngRoute" ])
+angular.module("admin-users", [ "admin-roles", "ngResource", "ngRoute", "security" ])
 
 .value('newUser', function() {
 	return {
@@ -116,20 +116,22 @@ angular.module("admin-users", [ "admin-roles", "ngResource", "ngRoute" ])
 				} ])
 
 // Provides users operation
-.factory('userService', [ '$resource', 'admin.user.url', function($resource, serviceUrl) {
+.factory('userService', [ '$resource', 'admin.user.url', 'Session', function($resource, serviceUrl, Session) {
 	return $resource('api/v1/security/users', {}, {
 		'query' : {
 			url : serviceUrl+'?searchString=:searchString&page=:page&pageSize=:pageSize',
 			params : {
 				page : '@page',
-				pageSize : '@pageSize'
+				pageSize : '@pageSize',
 			},
 			method : 'GET',
-			isArray : true
+			isArray : true,
+			headers : {'auth-token':Session.token}
 		},
 		'create' : {
 			method : 'POST',
-			url : serviceUrl
+			url : serviceUrl,
+			headers : {'auth-token':Session.token}
 		}
 	});
 } ])

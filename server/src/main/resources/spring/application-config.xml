@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:crypt="http://springcryptoutils.com/schema/crypt"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context.xsd
+						http://springcryptoutils.com/schema/crypt
+        				http://springcryptoutils.com/schema/crypt.xsd">
+
+	<!-- Uncomment and add your base-package here: -->
+	<context:component-scan base-package="com.example.shiro.api" />
+	<context:component-scan base-package="com.example.security.token" />
+	<bean id="delegatingFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<!-- <property name="filters"> -->
+		<!-- <map> -->
+		<!-- <entry key="tokenFilter" value-ref="tokenFilter" /> -->
+		<!-- </map> -->
+		<!-- </property> -->
+		<property name="securityManager" ref="securityManager" />
+		<property name="filterChainDefinitions">
+			<value>
+				# some example chain definitions:
+				/api/v1/security/login = anon
+				/api/v1/security/users/** = noSessionCreation, tokenFilter
+				/api/v1/security/roles/** = noSessionCreation, tokenFilter
+				/** = noSessionCreation
+				# more URL-to-FilterChain definitions here
+			</value>
+		</property>
+	</bean>
+
+	<bean id="tokenFilter" class="com.example.shiro.api.web.TokenFilter" />
+
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<!-- Single realm app. If you have multiple realms, use the 'realms' property 
+			instead. -->
+		<property name="realms">
+			<list>
+				<ref bean="tokenRealm" />
+				<ref bean="DBUsernamePasswordRealm" />
+			</list>
+		</property>
+		<!-- By default the servlet container sessions will be used. Uncomment 
+			this line to use shiro's native sessions (see the JavaDoc for more): -->
+		<!-- <property name="sessionMode" value="native"/> -->
+	</bean>
+
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+
+	<bean id="tokenRealm" class="com.example.shiro.realm.TokenRealm">
+		<property name="name" value="tokenRealm" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="DBUsernamePasswordRealm" class="org.apache.shiro.realm.jdbc.JdbcRealm">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="dataSource" destroy-method="close"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/shiroExample" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
+	</bean>
+
+
+	<!-- Crypto -->
+	<bean
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="staticMethod" value="java.security.Security.addProvider" />
+		<property name="arguments">
+			<list>
+				<bean class="org.bouncycastle.jce.provider.BouncyCastleProvider" />
+			</list>
+		</property>
+	</bean>
+
+	<crypt:symmetricCipherer id="encrypter"
+		keyAlgorithm="aes" cipherAlgorithm="aes/CBC/PKCS5Padding" provider="BC"
+		mode="ENCRYPT" />
+	<crypt:symmetricCipherer id="decrypter"
+		keyAlgorithm="aes" cipherAlgorithm="aes/CBC/PKCS5Padding" provider="BC"
+		mode="DECRYPT" />
+	
+	<crypt:signer id="signer" privateKey-ref="signaturePrivateKey"
+    			algorithm="SHA256withRSA" provider="BC"/>
+	
+	<crypt:verifier id="verifier" publicKey-ref="signaturePublicKey" 
+                algorithm="SHA256withRSA" provider="BC"/>
+	
+	<crypt:publicKey id="signaturePublicKey" keystore-ref="keystore" alias="tokenSignature"/>
+	<crypt:privateKey id="signaturePrivateKey" keystore-ref="keystore" alias="tokenSignature"
+    password="tokenSignatureKeyPass"/>
+	
+	<crypt:secretKey id="secretKey" keystore-ref="keystore"
+		alias="testAESKey" password="testKeyPass" />
+
+	<crypt:keystore id="keystore" location="classpath:aes-128-keystore.jck"
+		password="mystorepass" type="JCEKS" />
+
+
+
+</beans>
