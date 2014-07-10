@@ -4,10 +4,12 @@
 angular.module("app", [ "admin", "security","ngRoute" ])
 
 // Configure Authentication Service
-.value("security.login.url", "http://localhost:8080/shiroExample/api/v1/security/login")
+//.value("security.login.url", "http://localhost:8080/shiroExample/api/v1/security/login")
+.value("security.login.url", "http://localhost:8080/spring-security-server-example/api/v1/security/login")
 
 // Configure the user administration json services
-.value("admin.user.url", "http://localhost:8080/shiroExample/api/v1/security/users")
+//.value("admin.user.url", "http://localhost:8080/shiroExample/api/v1/security/users")
+.value("admin.user.url", "http://localhost:8080/spring-security-server-example/api/v1/security/users")
 
 .config(['$routeProvider', 'USER_ROLES', function($routeProvider, USER_ROLES) {
   $routeProvider

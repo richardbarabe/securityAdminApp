@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:crypt="http://springcryptoutils.com/schema/crypt"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context.xsd
+						http://springcryptoutils.com/schema/crypt
+        				http://springcryptoutils.com/schema/crypt.xsd">
+	
+<!-- 	<bean id="BC" class="org.bouncycastle.jce.provider.BouncyCastleProvider" /> -->
+	
+	<!-- Crypto -->
+	<crypt:b64SymmetricCipherer id="encrypter" keyAlgorithm="aes"
+                         cipherAlgorithm="aes/CBC/PKCS5Padding" provider="BC"
+                         mode="ENCRYPT"/>
+	<crypt:b64SymmetricCipherer id="decrypter" keyAlgorithm="aes"
+                         cipherAlgorithm="aes/CBC/PKCS5Padding" provider="BC"
+                         mode="DECRYPT" />
+	
+	<crypt:secretKey id="secretKey" keystore-ref="keystore"
+		alias="testAESKey" password="testKeyPass" />
+
+	<crypt:keystore id="keystore" location="classpath:aes-128-keystore.jck"
+		password="mystorepass" type="JCEKS"/>
+		
+	
+</beans>
